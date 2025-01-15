@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+body {
+  height: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: #000000;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  font-family: 'Roboto Flex', serif;
+}
+
+main {
+  flex-grow: 1;
+}
