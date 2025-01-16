@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Roboto_Flex } from 'next/font/google';
 
+import { Header } from '@/components';
 import './globals.css';
 
 const roboto = Roboto_Flex({
@@ -9,8 +10,8 @@ const roboto = Roboto_Flex({
 });
 
 export const metadata: Metadata = {
-  title: 'Cat Pinterest',
-  description: 'Everyday dose of cat images',
+  title: 'Кошачий пинтерест',
+  description: 'Котики на каждый день',
 };
 
 export default function RootLayout({
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} flex flex-col antialiased`}>{children}</body>
+      <body className={`${roboto.variable} flex flex-col antialiased`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

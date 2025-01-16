@@ -11,5 +11,6 @@
   "quoteProps": "as-needed",
   "jsxSingleQuote": false,
   "embeddedLanguageFormatting": "auto",
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "endingPosition": "absolute-with-indent",
+  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-classnames", "prettier-plugin-merge"]
 }
