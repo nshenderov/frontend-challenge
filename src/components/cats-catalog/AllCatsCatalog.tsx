@@ -8,10 +8,12 @@ import { fetchCats } from '@/utils';
 import { CatCard } from './CatCard';
 import { CatsLoader } from './CatsLoader';
 import { CatsMoreLoader } from './CatsMoreLoader';
+import { useElementInView } from '@/hooks';
 
 export function AllCatsCatalog() {
   const [cats, setCats] = useState<CatData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [targetRef, isInView] = useElementInView({ threshold: 0.1 });
 
   useEffect(() => {
     let ignore = false;
@@ -27,14 +29,20 @@ export function AllCatsCatalog() {
     };
   }, [pageNumber]);
 
+  useEffect(() => {
+    setPageNumber(p => ++p);
+  }, [isInView]);
+
   if (cats.length == 0) {
     return <CatsLoader />;
   }
 
   return (
     <>
-      <CatsGrid>{cats && cats.map(cat => <CatCard key={cat.id} cat={cat} />)}</CatsGrid>
-      <CatsMoreLoader />
+      <CatsGrid>
+        {cats && cats.map((cat, idx) => <CatCard key={cat.id + idx} cat={cat} />)}
+      </CatsGrid>
+      <CatsMoreLoader ref={targetRef as React.Ref<HTMLDivElement>} />
     </>
   );
 }
