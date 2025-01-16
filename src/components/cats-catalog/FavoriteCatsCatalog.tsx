@@ -32,6 +32,10 @@ export function FavoriteCatsCatalog() {
     return <CatsLoader />;
   }
 
+  if (cats.length == 0) {
+    return <div className="mt-4">Тут пока пусто</div>;
+  }
+
   return (
     <CatsGrid>
       {cats && cats.map(cat => <CatCard key={cat.id} cat={cat} onRemoveCat={onRemoveCatFromFav} />)}
