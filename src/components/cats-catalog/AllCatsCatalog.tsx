@@ -40,7 +40,9 @@ export function AllCatsCatalog() {
   return (
     <>
       <CatsGrid>
-        {cats && cats.map((cat, idx) => <CatCard key={cat.id + idx} cat={cat} />)}
+        {cats.map((cat, idx) => (
+          <CatCard key={cat.id + idx} cat={cat} />
+        ))}
       </CatsGrid>
       <CatsMoreLoader ref={targetRef as React.Ref<HTMLDivElement>} />
     </>

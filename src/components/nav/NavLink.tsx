@@ -13,8 +13,9 @@ export function NavLink({ href, children }: NavLinkProps) {
 
   return (
     <Link
-      className={`flex h-full items-center px-6 font-semibold text-white transition-all duration-200
-        hover:text-opacity-100 ${pathname == href ? 'bg-mat-blue-accent' : 'text-opacity-70'}`}
+      className={`flex h-full items-center px-6 text-center font-semibold text-white transition-all
+        duration-200 hover:text-opacity-100
+        ${pathname == href ? 'bg-mat-blue-accent' : 'text-opacity-70'}`}
       href={href}
     >
       {children}
