@@ -1,17 +1,20 @@
 import { CatData } from '@/types';
 
-export async function fetchCats(page: number): Promise<CatData[]> {
-  const res = await fetch(
-    `https://api.thecatapi.com/v1/images/search?size=small&limit=24&page=${page}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.NEXT_PUBLIC_CATS_API_KEY ?? '',
-      },
-    }
-  );
+type FetchCatsProps = readonly [Promise<CatData[]>, AbortController['abort']];
 
-  const data = await res.json();
+export function fetchCats(page: number): FetchCatsProps {
+  const apiKey = process.env.NEXT_PUBLIC_CATS_API_KEY;
 
-  return data;
+  if (!apiKey) throw new Error('API key is missing');
+
+  const controller = new AbortController();
+  const query = `https://api.thecatapi.com/v1/images/search?size=small&limit=24&page=${page}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': apiKey,
+  };
+
+  const getCats = fetch(query, { headers, signal: controller.signal }).then(res => res.json());
+
+  return [getCats, controller.abort.bind(controller)];
 }

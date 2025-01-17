@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
-import { Roboto_Flex } from 'next/font/google';
 
 import { Header } from '@/components';
+import { roboto } from '@/utils';
 import './globals.css';
-
-const roboto = Roboto_Flex({
-  variable: '--font-roboto-flex',
-  subsets: ['cyrillic'],
-});
 
 export const metadata: Metadata = {
   title: 'Кошачий пинтерест',
@@ -20,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${roboto.variable} flex flex-col antialiased`}>
+    <html lang="ru">
+      <body className={`${roboto} flex flex-col [&_main]:grow`}>
         <Header />
         {children}
       </body>

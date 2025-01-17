@@ -8,9 +8,6 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        serif: ['Roboto Flex', 'serif'],
-      },
       colors: {
         'mat-blue': '#2196F3',
         'mat-blue-accent': '#1E88E5',

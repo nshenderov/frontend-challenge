@@ -2,20 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-body {
-  height: 100%;
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
 }
 
 body {
-  background: #ffffff;
-  color: #000000;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: 0.25px;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.313rem;
+  letter-spacing: 0.016rem;
   font-family: 'Roboto Flex', serif;
-}
-
-main {
-  flex-grow: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

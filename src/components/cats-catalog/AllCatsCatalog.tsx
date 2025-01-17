@@ -16,16 +16,16 @@ export function AllCatsCatalog() {
   const [targetRef, isInView] = useElementInView({ threshold: 0.1 });
 
   useEffect(() => {
-    let ignore = false;
+    const [promise, cancel] = fetchCats(pageNumber);
 
-    fetchCats(pageNumber).then(data => {
-      if (!ignore) {
-        setCats(p => [...p, ...data]);
-      }
-    });
+    promise
+      .then(data => setCats(c => [...c, ...data]))
+      .catch(err => {
+        if (err.name !== 'AbortError') throw err;
+      });
 
     return () => {
-      ignore = true;
+      cancel();
     };
   }, [pageNumber]);
 
