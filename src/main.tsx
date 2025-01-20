@@ -9,7 +9,7 @@ const root = document.getElementById('root');
 
 createRoot(root!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<AllCats />} />
