@@ -1,0 +1,29 @@
+@use 'scss-reset';
+@use 'colors' as *;
+
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/roboto-cyrillic-400-normal.woff2') format('woff2');
+  font-family: 'Roboto';
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 500;
+  src: url('@/assets/fonts/roboto-cyrillic-500-normal.woff2') format('woff2');
+  font-family: 'Roboto';
+  font-display: swap;
+}
+
+body {
+  background-color: $bg;
+  color: $color;
+  font-size: 0.875rem;
+  line-height: 1.313rem;
+  font-family: 'Roboto', serif;
+  letter-spacing: 0.016rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

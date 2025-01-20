@@ -1,0 +1,43 @@
+@use '@/styles' as *;
+
+$tiptextcolor: #ffffffee;
+
+.tooltip {
+  display: inline-block;
+  position: relative;
+
+  &:hover {
+    & .tip {
+      opacity: 1;
+    }
+  }
+}
+
+.tip {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  margin-top: rem(8);
+  border-radius: rem(4);
+  background-color: $gray-dark;
+  padding: rem(5) rem(8);
+  width: max-content;
+  color: $tiptextcolor;
+  text-align: center;
+  white-space: pre-wrap;
+
+  @include transition(opacity, $delay: 700ms);
+
+  &::after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent $gray-dark transparent;
+    content: '';
+  }
+}

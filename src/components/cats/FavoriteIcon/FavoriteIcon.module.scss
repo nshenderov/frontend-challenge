@@ -1,0 +1,28 @@
+@use '@/styles' as *;
+
+.favorite-icon {
+  color: $red-accent;
+
+  & path:first-of-type {
+    @include transition;
+    opacity: 0;
+  }
+
+  &.favorite {
+    color: $red;
+
+    & path:first-of-type {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    & path:first-of-type {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    color: $red;
+  }
+}

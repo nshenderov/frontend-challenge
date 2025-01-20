@@ -1,0 +1,6 @@
+@use '@/styles' as *;
+
+.loader {
+  @include animate-pulse;
+  margin: rem(25);
+}

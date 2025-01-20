@@ -2,16 +2,19 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 
-import { App } from './App';
-import './index.css';
+import { AllCats, FavoriteCats, MainLayout } from '@/components';
+import '@/styles/main.scss';
 
-const root = document.getElementById('root')!;
+const root = document.getElementById('root');
 
-createRoot(root).render(
+createRoot(root!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<AllCats />} />
+          <Route path="favorite-cats" element={<FavoriteCats />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>

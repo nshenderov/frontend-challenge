@@ -10,5 +10,6 @@
   "bracketSpacing": true,
   "quoteProps": "as-needed",
   "jsxSingleQuote": false,
-  "embeddedLanguageFormatting": "auto"
+  "embeddedLanguageFormatting": "auto",
+  "plugins": ["prettier-plugin-css-order"]
 }

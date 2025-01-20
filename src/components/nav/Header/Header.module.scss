@@ -1,0 +1,27 @@
+@use '@/styles' as *;
+
+.header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  background-color: $blue;
+  padding: 0 rem(64);
+  height: rem(64);
+
+  @include shadow;
+  @include sm {
+    & {
+      justify-content: flex-start;
+    }
+  }
+
+  > nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}

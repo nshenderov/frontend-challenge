@@ -1,0 +1,50 @@
+@mixin transition($property: all, $duration: 200ms, $delay: 0) {
+  transition-delay: $delay;
+  transition-duration: $duration;
+  transition-property: $property;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin shadow() {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+@mixin animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@mixin sm() {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin xl() {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin xxl() {
+  @media (min-width: 1536px) {
+    @content;
+  }
+}
