@@ -13,7 +13,7 @@ type CatCardProps = {
   onRemoveCat?: (catId: string) => void;
 };
 
-export function CatCard({ cat, onRemoveCat = () => {} }: CatCardProps) {
+export function CatCard({ cat, onRemoveCat }: CatCardProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(() => !!catsStorage.getCat(cat.id));
 
@@ -21,7 +21,7 @@ export function CatCard({ cat, onRemoveCat = () => {} }: CatCardProps) {
     if (isFavorite) {
       catsStorage.removeCat(cat.id);
       setIsFavorite(false);
-      onRemoveCat(cat.id);
+      onRemoveCat?.(cat.id);
     } else {
       catsStorage.saveCat(cat);
       setIsFavorite(true);

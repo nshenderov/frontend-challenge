@@ -1,8 +1,8 @@
 import { CatData } from '@/types';
 
-type FetchCatsProps = readonly [Promise<CatData[]>, AbortController['abort']];
+type PromiseAbortTuple = readonly [Promise<CatData[]>, AbortController['abort']];
 
-export function fetchCats(page: number): FetchCatsProps {
+export function fetchCats(page: number): PromiseAbortTuple {
   const apiKey = process.env.NEXT_PUBLIC_CATS_API_KEY;
 
   if (!apiKey) throw new Error('API key is missing');
@@ -14,7 +14,7 @@ export function fetchCats(page: number): FetchCatsProps {
     'x-api-key': apiKey,
   };
 
-  const getCats = fetch(query, { headers, signal: controller.signal }).then(res => res.json());
+  const promise = fetch(query, { headers, signal: controller.signal }).then(res => res.json());
 
-  return [getCats, controller.abort.bind(controller)];
+  return [promise, controller.abort.bind(controller)];
 }
