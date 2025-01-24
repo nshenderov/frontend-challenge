@@ -10,5 +10,5 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  base: '/frontend-challenge/',
+  base: '/vk-frontend-challenge/',
 });
