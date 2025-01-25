@@ -1,0 +1,15 @@
+@use '@/styles' as *;
+
+.loader {
+  @include animate-pulse;
+
+  display: flex;
+  gap: 5px;
+
+  & div {
+    border-radius: 999px;
+    background-color: $gray-light;
+    width: 12px;
+    height: 12px;
+  }
+}

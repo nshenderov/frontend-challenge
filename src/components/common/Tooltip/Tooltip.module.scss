@@ -14,6 +14,8 @@ $tiptextcolor: #ffffffee;
 }
 
 .tip {
+  @include transition(opacity, $delay: 700ms);
+
   position: absolute;
   top: 85%;
   left: 50%;
@@ -27,8 +29,6 @@ $tiptextcolor: #ffffffee;
   color: $tiptextcolor;
   text-align: center;
   white-space: pre-wrap;
-
-  @include transition(opacity, $delay: 700ms);
 
   &::after {
     position: absolute;

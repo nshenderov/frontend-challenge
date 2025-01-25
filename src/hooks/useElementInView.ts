@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { type Ref, useEffect, useRef, useState } from 'react';
 
-export function useElementInView(options: IntersectionObserverInit) {
+export function useElementInView<T extends Element = Element>(
+  options: IntersectionObserverInit
+): [Ref<T>, boolean] {
   const [isInView, setIsInView] = useState(false);
-  const targetRef = useRef(null);
+  const targetRef = useRef<T | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {

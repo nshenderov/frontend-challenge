@@ -1,3 +1,4 @@
 export * from './Image';
 export * from './Tooltip';
-export * from './Loader';
+export * from './LoaderText';
+export * from './LoaderDots';

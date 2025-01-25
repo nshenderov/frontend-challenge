@@ -2,7 +2,7 @@ import { CatData } from '@/types';
 
 type PromiseAbortTuple = readonly [Promise<CatData[]>, AbortController['abort']];
 
-export function fetchAllCats(page: number): PromiseAbortTuple {
+export function fetchRandomCats(page: number): PromiseAbortTuple {
   const apiKey = import.meta.env.VITE_CATS_API_KEY;
 
   if (!apiKey) throw new Error('API key is missing');

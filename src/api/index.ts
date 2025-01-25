@@ -1,1 +1,1 @@
-export * from './fetchAllCats';
+export * from './fetchRandomCats';

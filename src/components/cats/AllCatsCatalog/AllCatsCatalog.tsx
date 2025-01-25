@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 
 import { CatData } from '@/types';
 import { useElementInView } from '@/hooks';
-import { fetchAllCats } from '@/api';
-import { CatCard, CatsGrid, Loader } from '@/components';
+import { fetchRandomCats } from '@/api';
+import { CatCard, CardsGrid, LoaderText, CatalogSkeletonLoader } from '@/components';
 
 export function AllCatsCatalog() {
   const [cats, setCats] = useState<CatData[]>([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [targetRef, isInView] = useElementInView({ threshold: 0.1 });
+  const [pageNumber, setPageNumber] = useState(0);
+  const [targetRef, isInView] = useElementInView<HTMLDivElement>({ threshold: 0.1 });
 
   useEffect(() => {
-    const [promise, cancel] = fetchAllCats(pageNumber);
+    const [promise, cancel] = fetchRandomCats(pageNumber);
 
     promise
       .then(data => {
@@ -31,18 +31,18 @@ export function AllCatsCatalog() {
   }, [isInView]);
 
   if (cats.length == 0) {
-    return <Loader text="загружаем котиков" />;
+    return <CatalogSkeletonLoader />;
   }
 
   return (
     <>
-      <CatsGrid>
+      <CardsGrid>
         {cats.map((cat, idx) => (
           <CatCard key={cat.id + idx} cat={cat} />
         ))}
-      </CatsGrid>
-      <div ref={targetRef as React.Ref<HTMLDivElement>}>
-        <Loader text="загружаем еще котиков" />
+      </CardsGrid>
+      <div ref={targetRef}>
+        <LoaderText text="загружаем еще котиков" />
       </div>
     </>
   );
