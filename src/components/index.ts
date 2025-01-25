@@ -1,3 +1,4 @@
-export * from './nav/Header';
-export * from './common/Tooltip';
-export * from './cats-catalog';
+export * from './nav';
+export * from './Image';
+export * from './Tooltip';
+export * from './DotsLoader';

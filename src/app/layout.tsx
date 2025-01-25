@@ -5,7 +5,7 @@ import { roboto } from '@/utils';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Кошачий пинтерест',
+  title: 'Котики',
   description: 'Котики на каждый день',
 };
 

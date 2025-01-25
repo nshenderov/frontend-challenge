@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from 'react';
 
-import { CatsGrid } from './CatsGrid';
-import { CatData } from '@/types';
+import { DotsLoader } from '@/components';
+
+import { CardsGrid } from './CardsGrid';
 import { CatCard } from './CatCard';
-import { CatsLoader } from './CatsLoader';
-import { catsStorage } from '@/utils';
+import { catsStore } from '../store';
+import { type CatData } from '../types';
 
 export function FavoriteCatsCatalog() {
   const [cats, setCats] = useState<CatData[] | null>(null);
 
   useEffect(() => {
-    setCats(catsStorage.getAllCats());
+    setCats(catsStore.getAllCats());
   }, []);
 
   const onRemoveCatFromFav = (catId: string): void => {
@@ -20,18 +21,18 @@ export function FavoriteCatsCatalog() {
   };
 
   if (!cats) {
-    return <CatsLoader />;
+    return <DotsLoader className="m-6" />;
   }
 
   if (cats.length == 0) {
-    return <div className="mt-4">Тут пока пусто</div>;
+    return <p className="mt-4">Пусто! Добавьте котиков в любимые!</p>;
   }
 
   return (
-    <CatsGrid>
+    <CardsGrid>
       {cats.map(cat => (
         <CatCard key={cat.id} cat={cat} onRemoveCat={onRemoveCatFromFav} />
       ))}
-    </CatsGrid>
+    </CardsGrid>
   );
 }

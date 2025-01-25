@@ -1,4 +1,4 @@
-import { CatData } from '@/types';
+import { type CatData } from '../types';
 
 const STORAGE_KEYS_PREFIX = 'CAT_';
 
@@ -6,15 +6,11 @@ function prefixKey(key: string): string {
   return `${STORAGE_KEYS_PREFIX}${key}`;
 }
 
-export const catsStorage = {
-  getCat(catId: string): CatData | null {
+export const catsStore = {
+  hasCat(catId: string): boolean {
     const cat = localStorage.getItem(prefixKey(catId));
 
-    if (cat) {
-      return JSON.parse(cat);
-    }
-
-    return null;
+    return !!cat;
   },
   getAllCats(): CatData[] {
     const parsedCats = [];

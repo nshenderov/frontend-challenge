@@ -1,10 +1,5 @@
 import { NavLink } from './NavLink';
 
-const ROUTES = [
-  { path: '/', text: 'Все котики' },
-  { path: '/favorite-cats', text: 'Любимые котики' },
-];
-
 export function Header() {
   return (
     <header
@@ -12,11 +7,8 @@ export function Header() {
         shadow-mat sm:justify-start"
     >
       <nav className="flex h-full items-center">
-        {ROUTES.map(({ path, text }) => (
-          <NavLink key={path} href={path}>
-            {text}
-          </NavLink>
-        ))}
+        <NavLink href={'/'}>Все котики</NavLink>
+        <NavLink href={'/favorite-cats'}>Любимые котики</NavLink>
       </nav>
     </header>
   );

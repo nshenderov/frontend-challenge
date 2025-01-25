@@ -1,8 +1,8 @@
-import { CatData } from '@/types';
+import { CatData } from '../types';
 
 type PromiseAbortTuple = readonly [Promise<CatData[]>, AbortController['abort']];
 
-export function fetchCats(page: number): PromiseAbortTuple {
+export function fetchRandomCats(page: number): PromiseAbortTuple {
   const apiKey = process.env.NEXT_PUBLIC_CATS_API_KEY;
 
   if (!apiKey) throw new Error('API key is missing');

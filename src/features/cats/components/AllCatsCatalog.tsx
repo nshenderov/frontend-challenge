@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
-import { CatsGrid } from './CatsGrid';
-import { CatData } from '@/types';
-import { fetchCats } from '@/utils';
-import { CatCard } from './CatCard';
-import { CatsLoader } from './CatsLoader';
-import { CatsMoreLoader } from './CatsMoreLoader';
 import { useElementInView } from '@/hooks';
+
+import { CardsGrid } from './CardsGrid';
+import { CatCard } from './CatCard';
+import { CatalogSkeletonLoader } from './CatalogSkeletonLoader';
+import { fetchRandomCats } from '../api';
+import { type CatData } from '../types';
 
 export function AllCatsCatalog() {
   const [cats, setCats] = useState<CatData[]>([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [targetRef, isInView] = useElementInView({ threshold: 0.1 });
+  const [pageNumber, setPageNumber] = useState(0);
+  const [targetRef, isInView] = useElementInView<HTMLDivElement>({ threshold: 0.1 });
 
   useEffect(() => {
-    const [promise, cancel] = fetchCats(pageNumber);
+    const [promise, cancel] = fetchRandomCats(pageNumber);
 
     promise
       .then(data => setCats(c => [...c, ...data]))
@@ -34,17 +34,19 @@ export function AllCatsCatalog() {
   }, [isInView]);
 
   if (cats.length == 0) {
-    return <CatsLoader />;
+    return <CatalogSkeletonLoader />;
   }
 
   return (
     <>
-      <CatsGrid>
+      <CardsGrid>
         {cats.map((cat, idx) => (
           <CatCard key={cat.id + idx} cat={cat} />
         ))}
-      </CatsGrid>
-      <CatsMoreLoader ref={targetRef as React.Ref<HTMLDivElement>} />
+      </CardsGrid>
+      <div ref={targetRef} className="animate-pulse">
+        ... загружаем еще котиков ...
+      </div>
     </>
   );
 }
